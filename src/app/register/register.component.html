@@ -1,0 +1,141 @@
+<div class="container-fluid gy-0">
+  <div class="row">
+    <div class="col d-flex align-items-center justify-content-center">
+      <div class="d-flex flex-column align-items-center">
+        <i class="bi bi-bank mb-2 h1"></i>
+        <div>Get Started</div>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+          <div class="d-flex flex-row">
+            <div class="d-flex flex-column px-2">
+              <label for="firstname"><small>First Name</small></label>
+              <input
+                class="form-control"
+                type="text"
+                id="firstname"
+                name="firstname"
+                formControlName="firstname"
+              />
+            </div>
+
+            <div class="d-flex flex-column px-2">
+              <label for="lastname"><small>Last Name</small></label>
+              <input
+                class="form-control"
+                type="text"
+                id="lastname"
+                name="lastname"
+                formControlName="lastname"
+              />
+            </div>
+          </div>
+
+          <p class="d-flex flex-column px-2">
+            <label for="email"><small>Email</small></label>
+            <input
+              class="form-control"
+              type="text"
+              id="email"
+              name="email"
+              formControlName="email"
+            />
+          </p>
+
+          <div class="d-flex flex-column px-2">
+            <label for="password"><small>Password</small></label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                [type]="hide ? 'password' : 'text'"
+                id="password"
+                name="password"
+                formControlName="password"
+                style="
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  border-right: 0;
+                "
+              />
+              <div class="input-group-append">
+                <span
+                  class="input-group-text bg-white border-left-0"
+                  style="
+                    cursor: pointer;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-left: 0;
+                  "
+                  (click)="toggleShow()"
+                >
+                  <i
+                    class="bi"
+                    [ngClass]="hide ? 'bi-eye' : 'bi-eye-slash'"
+                  ></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p class="d-flex flex-column px-2">
+            <label for="email"><small>Account Name</small></label>
+            <input
+              class="form-control"
+              type="text"
+              id="accountName"
+              name="accountName"
+              formControlName="accountName"
+            />
+          </p>
+
+          <div class="d-flex flex-row justify-content-center py-2">
+            <label class="px-2 form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                value="chequings"
+                formControlName="accountType"
+              />
+              <span class="px-2">Chequings</span>
+            </label>
+            <label class="px-2 form-check-label">
+              <input
+                class="form-check-input"
+                type="radio"
+                value="savings"
+                formControlName="accountType"
+              />
+              <span class="px-2">Savings</span>
+            </label>
+          </div>
+
+          <p class="d-flex flex-column px-2">
+            <label for="username"><small>Balance</small></label>
+            <input
+              class="form-control"
+              type="number"
+              id="balance"
+              name="balance"
+              formControlName="balance"
+            />
+          </p>
+
+          <div
+            class="d-flex flex-column p-2 align-items-center justify-content-center"
+          >
+            <button type="submit" class="btn btn-primary btn-lg">
+              Create new {{ registerForm.value.accountType }} account
+            </button>
+            <p>
+              <small
+                >Already have an account?
+                <a routerLink="/login">Login</a></small
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col px-0">
+      <div class="gradient vh-100 w-100 px-0"></div>
+    </div>
+  </div>
+</div>

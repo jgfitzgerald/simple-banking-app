@@ -1,0 +1,74 @@
+<div class="container-fluid gy-0">
+  <div class="row">
+    <div class="col d-flex align-items-center justify-content-center">
+      <div class="d-flex flex-column align-items-center">
+        <i class="bi bi-bank mb-2 h1"></i>
+        <div>Login to Trustic Banking</div>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+          <p class="d-flex flex-column pt-2">
+            <label for="email"><small>Username</small></label>
+            <input
+              class="form-control"
+              type="text"
+              id="email"
+              name="email"
+              formControlName="email"
+            />
+          </p>
+
+          <div class="d-flex flex-column pb-2">
+            <label for="password"><small>Password</small></label>
+            <div class="input-group">
+              <input
+                class="form-control"
+                [type]="hide ? 'password' : 'text'"
+                id="password"
+                name="password"
+                formControlName="password"
+                style="
+                  border-top-right-radius: 0;
+                  border-bottom-right-radius: 0;
+                  border-right: 0;
+                "
+              />
+              <div class="input-group-append">
+                <span
+                  class="input-group-text bg-white border-left-0"
+                  style="
+                    cursor: pointer;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                    border-left: 0;
+                  "
+                  (click)="toggleShow()"
+                >
+                  <i
+                    class="bi"
+                    [ngClass]="hide ? 'bi-eye' : 'bi-eye-slash'"
+                  ></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="d-flex flex-column p-4 align-items-center justify-content-center"
+          >
+            <button type="submit" class="btn btn-primary btn-lg mb-1">
+              Login
+            </button>
+            <p>
+              <small
+                >Don't have an account?
+                <a routerLink="/register">Register</a></small
+              >
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col px-0">
+      <div class="gradient vh-100 w-100 px-0"></div>
+    </div>
+  </div>
+</div>

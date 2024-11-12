@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { UserService } from '../_services/user.service';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,7 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
  
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService) { }
 
   hide : boolean = true;
 
@@ -33,7 +32,7 @@ export class LoginComponent {
     } else {
       const email = this.loginForm.value.email ?? '';
       const password = this.loginForm.value.password ?? '';
-      this.userService.login(email, password);
+      this.accountService.login(email, password);
     }
   }
 }

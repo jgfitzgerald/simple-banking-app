@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '../_services/user.service';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +23,7 @@ export class RegisterComponent {
   loading = false;
   submitted = false;
  
-  constructor(private fb: FormBuilder, private router: Router, private userService: UserService) { }
+  constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService) { }
 
   hide : boolean = true;
 
@@ -35,15 +35,19 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       this.submitted = true;
       this.loading = true;
-      this.userService.register({
+      this.accountService.register({
+        id: 'uuid',
         firstname: this.registerForm.value.firstname!,
         lastname: this.registerForm.value.lastname!,
         email: this.registerForm.value.email!,
         password: this.registerForm.value.password!,
         accounts: [{
+          id: 'uuid',
           name: this.registerForm.value.accountName!,
+          balance: parseFloat(this.registerForm.value.balance || '0'),
           accountType: this.registerForm.value.accountType!,
-          balance: this.registerForm.value.balance as unknown as number
+          userId: 'uuid',
+          transfers: []
         }]
       });
     }

@@ -1,0 +1,51 @@
+<!-- new-account.component.html -->
+<div class="d-flex flex-column">
+  <form [formGroup]="createForm" (ngSubmit)="create()" novalidate>
+    <div class="d-flex flex-column">
+      <div class="d-flex flex-column p-2">
+        <label for="name"><small>Account Name</small></label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          name="name"
+          formControlName="name"
+        />
+      </div>
+
+      <div class="d-flex flex-column p-2">
+        <label for="balance"><small>Balance</small></label>
+        <input
+          class="form-control"
+          type="text"
+          id="balance"
+          name="balance"
+          formControlName="balance"
+        />
+      </div>
+      <div class="d-flex flex-row justify-content-center py-2">
+        <label class="px-2 form-check-label">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="chequings"
+            formControlName="accountType"
+          />
+          <span class="px-2">Chequings</span>
+        </label>
+        <label class="px-2 form-check-label">
+          <input
+            class="form-check-input"
+            type="radio"
+            value="savings"
+            formControlName="accountType"
+          />
+          <span class="px-2">Savings</span>
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-md">
+        Create new {{ createForm.value.accountType }} account
+      </button>
+    </div>
+  </form>
+</div>

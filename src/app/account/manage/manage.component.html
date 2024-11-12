@@ -1,0 +1,55 @@
+<!-- manage.component.html -->
+<div class="row px-5 py-2">
+  <!-- Tab Navigation -->
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a
+        class="list-group-item list-group-item-action"
+        [ngClass]="{ active: activeTab === 'new-account' }"
+        (click)="setActiveTab('new-account')"
+        role="tab"
+        aria-controls="list-new-account"
+      >
+        New Account
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [ngClass]="{ active: activeTab === 'transfer' }"
+        (click)="setActiveTab('transfer')"
+        role="tab"
+        aria-controls="list-transfer"
+      >
+        Transfer Funds
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
+        [ngClass]="{ active: activeTab === 'history' }"
+        (click)="setActiveTab('history')"
+        role="tab"
+        aria-controls="list-history"
+      >
+        Transaction History
+      </a>
+    </div>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="col-8 bg-light p-4">
+    <div class="tab-content" id="nav-tabContent">
+      <!-- New Account Tab -->
+      <div *ngIf="activeTab === 'new-account'">
+        <app-add-account></app-add-account>
+      </div>
+
+      <!-- Transfer Funds Tab -->
+      <div *ngIf="activeTab === 'transfer'">
+        <app-transfer></app-transfer>
+      </div>
+
+      <!-- Transaction History Tab -->
+      <div *ngIf="activeTab === 'history'">
+        <app-view-transactions></app-view-transactions>
+      </div>
+    </div>
+  </div>
+</div>

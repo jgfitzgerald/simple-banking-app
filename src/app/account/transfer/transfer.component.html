@@ -1,0 +1,41 @@
+<!-- transfer-funds.component.html -->
+<div class="d-flex flex-column">
+  <form [formGroup]="transferForm" (ngSubmit)="transfer()" novalidate>
+    <div class="d-flex flex-column">
+      <div class="d-flex flex-column p-2">
+        <label for="from"><small>From</small></label>
+        <input
+          class="form-control"
+          type="text"
+          id="from"
+          name="from"
+          formControlName="from"
+        />
+      </div>
+
+      <div class="d-flex flex-column p-2">
+        <label for="to"><small>To</small></label>
+        <input
+          class="form-control"
+          type="text"
+          id="to"
+          name="to"
+          formControlName="to"
+        />
+      </div>
+      <div class="d-flex flex-column p-2">
+        <label for="amount"><small>Amount</small></label>
+        <input
+          class="form-control"
+          type="text"
+          id="amount"
+          name="amount"
+          formControlName="amount"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary btn-md m-2">
+        Transfer Funds
+      </button>
+    </div>
+  </form>
+</div>

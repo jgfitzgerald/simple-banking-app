@@ -1,15 +1,12 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '../_models/models';
+import { User } from '../../_models/models';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrl: './account.component.css'
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrl: './layout.component.css'
 })
-
-export class AccountComponent {
-  constructor(private router: Router) { }
+export class LayoutComponent {
   user: User = {
     id: '1',
     firstname: 'John',

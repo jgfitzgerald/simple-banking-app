@@ -1,22 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './account/account.component';
-import { AddAccountComponent } from './add-account/add-account.component';
-import { TransferComponent } from './transfer/transfer.component';
+import { LayoutComponent } from './shared/layout/layout.component';
+import { ManageComponent } from './account/manage/manage.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'account', children: [
+  { path: 'account', component: LayoutComponent, children: [
     { path: '', component: AccountComponent },
-    { path: 'new', component: AddAccountComponent },
-    { path: 'transfer', component: TransferComponent }
+    { path: 'manage', component: ManageComponent },
   ]},
+  
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

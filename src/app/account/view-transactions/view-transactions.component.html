@@ -1,0 +1,42 @@
+<!-- transaction-history.component.html -->
+<div class="container">
+  <!-- Search and Account Selection -->
+  <div class="d-flex justify-content-between mb-3">
+    <div class="w-30">
+      <select class="form-control">
+        <option value="">
+          Select Account
+          <i class="bi bi-caret-down-fill"></i>
+        </option>
+        <option *ngFor="let account of user?.accounts" [value]="account.id">
+          {{ account.name }}
+        </option>
+      </select>
+    </div>
+    <div class="w-50">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by Transaction ID"
+      />
+    </div>
+  </div>
+
+  <!-- Transaction Table -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>From Account</th>
+        <th>To Account</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+        <td>{{ transaction.fromAccountId }}</td>
+        <td>{{ transaction.toAccountId }}</td>
+        <td>{{ transaction.amount | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

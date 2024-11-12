@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 import { AccountComponent } from './account/account.component';
-import { TransferComponent } from './transfer/transfer.component';
-import { AddAccountComponent } from './add-account/add-account.component';
+
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AccountModule } from './account/account.module';
 
 @NgModule({
   declarations: [
@@ -19,8 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     AccountComponent,
-    TransferComponent,
-    AddAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     CurrencyPipe,
     HttpClientModule,
+    AccountModule 
   ],
   providers: [
     [CurrencyPipe]

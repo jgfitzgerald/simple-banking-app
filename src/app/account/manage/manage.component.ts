@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '../_models/models';
+import { AddAccountComponent } from '../add-account/add-account.component';
+import { TransferComponent } from '../transfer/transfer.component';
+import { ViewTransactionsComponent } from '../view-transactions/view-transactions.component';
+import { User } from '../../_models/models';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrl: './account.component.css'
+  selector: 'app-manage',
+  templateUrl: './manage.component.html',
+  styleUrls: ['./manage.component.css']
 })
+export class ManageComponent {
+  activeTab: string = 'new-account'; // Default tab is 'New Account'
 
-export class AccountComponent {
-  constructor(private router: Router) { }
+  setActiveTab(tab: string): void {
+    this.activeTab = tab;
+  }
+
   user: User = {
     id: '1',
     firstname: 'John',
@@ -53,4 +59,17 @@ export class AccountComponent {
       }
     ]
   };
+
+  transactions = [
+    { fromAccountId: '1', toAccountId: '2', amount: 200 },
+    { fromAccountId: '2', toAccountId: '1', amount: 100 },
+    { fromAccountId: '3', toAccountId: '1', amount: 150 },
+    { fromAccountId: '4', toAccountId: '3', amount: 300 },
+    { fromAccountId: '2', toAccountId: '3', amount: 500 },
+    { fromAccountId: '1', toAccountId: '4', amount: 400 },
+    { fromAccountId: '3', toAccountId: '2', amount: 200 },
+    { fromAccountId: '4', toAccountId: '1', amount: 350 },
+    { fromAccountId: '2', toAccountId: '4', amount: 100 },
+    { fromAccountId: '3', toAccountId: '1', amount: 50 },
+  ];
 }

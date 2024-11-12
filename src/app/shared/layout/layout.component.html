@@ -1,19 +1,22 @@
+<!-- layout.component.html -->
 <div class="container-fluid">
   <div class="row">
+    <!-- Sidebar -->
     <div class="sidebar col-sm-auto sticky-top">
       <div
-        class="sidebar d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky-top"
+        class="d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky-top"
       >
+        <!-- Logo / Bank Icon -->
         <a
           routerLink="/"
           class="d-block p-3 link-light"
-          title=""
+          title="Home"
           data-bs-toggle="tooltip"
           data-bs-placement="right"
-          data-bs-original-title="Icon-only"
         >
           <i class="bi bi-bank fs-1"></i>
         </a>
+        <!-- Sidebar Navigation -->
         <ul
           class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center"
         >
@@ -21,22 +24,20 @@
             <a
               routerLink="/account"
               class="nav-link py-3 px-2 text-light"
-              title=""
+              title="Home"
               data-bs-toggle="tooltip"
               data-bs-placement="right"
-              data-bs-original-title="Home"
             >
               <i class="bi bi-house fs-2"></i>
             </a>
           </li>
           <li>
             <a
-              routerLink="/account/transfer"
+              routerLink="/account/manage"
               class="nav-link py-3 px-2 text-light"
-              title=""
+              title="Transfer"
               data-bs-toggle="tooltip"
               data-bs-placement="right"
-              data-bs-original-title="Transfer"
             >
               <i class="bi bi-arrow-left-right fs-2"></i>
             </a>
@@ -44,9 +45,23 @@
         </ul>
       </div>
     </div>
-    <div class="col-sm p-3 min-vh-100 position-relative">
-      <!-- Main Content -->
-      Content here
+
+    <!-- Main Content -->
+    <div
+      class="col-sm p-3 min-vh-100 position-relative align-items-center justify-content-center"
+    >
+      <!-- Profile and User Info -->
+      <div
+        class="container d-flex justify-content-end align-items-center mb-3 px-5"
+      >
+        <div class="d-flex align-items-center">
+          <small class="me-4">
+            {{ user.firstname || "" }} {{ user.lastname || "" }}
+          </small>
+          <i class="bi bi-person-circle fs-1"></i>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { User } from '../_models/models';
+import { User } from '../../_models/models';
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrl: './account.component.css'
+  selector: 'app-view-transactions',
+  templateUrl: './view-transactions.component.html',
+  styleUrl: './view-transactions.component.css'
 })
+export class ViewTransactionsComponent {
 
-export class AccountComponent {
-  constructor(private router: Router) { }
   user: User = {
     id: '1',
     firstname: 'John',
@@ -53,4 +51,18 @@ export class AccountComponent {
       }
     ]
   };
+
+  transactions = [
+    { fromAccountId: '1', toAccountId: '2', amount: 200 },
+    { fromAccountId: '2', toAccountId: '1', amount: 100 },
+    { fromAccountId: '3', toAccountId: '1', amount: 150 },
+    { fromAccountId: '4', toAccountId: '3', amount: 300 },
+    { fromAccountId: '2', toAccountId: '3', amount: 500 },
+    { fromAccountId: '1', toAccountId: '4', amount: 400 },
+    { fromAccountId: '3', toAccountId: '2', amount: 200 },
+    { fromAccountId: '4', toAccountId: '1', amount: 350 },
+    { fromAccountId: '2', toAccountId: '4', amount: 100 },
+    { fromAccountId: '3', toAccountId: '1', amount: 50 },
+  ];
+
 }

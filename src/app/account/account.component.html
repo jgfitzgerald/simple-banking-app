@@ -1,71 +1,26 @@
 <div class="container-fluid">
-  <div class="row">
-    <div class="sidebar col-sm-auto sticky-top">
-      <div
-        class="sidebar d-flex flex-sm-column flex-row flex-nowrap align-items-center sticky-top"
-      >
-        <a
-          routerLink="/"
-          class="d-block p-3 link-light"
-          title=""
-          data-bs-toggle="tooltip"
-          data-bs-placement="right"
-          data-bs-original-title="Icon-only"
-        >
-          <i class="bi bi-bank fs-1"></i>
-        </a>
-        <ul
-          class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center"
-        >
-          <li class="nav-item">
-            <a
-              routerLink="/account"
-              class="nav-link py-3 px-2 text-light"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Home"
+  <!-- Welcome Section -->
+  <div class="row px-5 py-4">
+    <h1 class="display-4 text-center">Welcome, {{ user.firstname || "" }}!</h1>
+  </div>
+
+  <!-- Account List Section -->
+  <div class="row gx-5 py-2 px-5">
+    <div class="col-12 mb-4" *ngFor="let account of user?.accounts">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-primary">
+            {{ account.name || "" }}
+          </h5>
+          <p class="card-text">
+            Balance:
+            <span class="fw-bold">{{ account.balance | currency }}</span>
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Account Type: {{ account.accountType || "N/A" }}</small
             >
-              <i class="bi bi-house fs-2"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              routerLink="/account/transfer"
-              class="nav-link py-3 px-2 text-light"
-              title=""
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              data-bs-original-title="Transfer"
-            >
-              <i class="bi bi-arrow-left-right fs-2"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div
-      class="col-sm p-3 min-vh-100 position-relative align-items-center justify-content-center"
-    >
-      <div class="container d-flex flex-row justify-content-end mb-3 px-5">
-        <div class="row">
-          <div>
-            <small
-              >{{ user?.firstname || "" }} {{ user?.lastname || "" }}</small
-            >
-          </div>
-          <i class="bi bi-person-circle fs-1"></i>
-        </div>
-      </div>
-      <div class="container-fluid">
-        <div class="row px-5 py-2">
-          <h1>Welcome, {{ user?.firstname || "" }}!</h1>
-        </div>
-        <div class="row px-5 py-2">
-          <div class="card md-3" *ngFor="let account of user?.accounts">
-            <h5 class="card-title">{{ account?.name || "" }}</h5>
-            <p class="card-text">Balance: {{ account?.balance || "" }}</p>
-          </div>
+          </p>
         </div>
       </div>
     </div>

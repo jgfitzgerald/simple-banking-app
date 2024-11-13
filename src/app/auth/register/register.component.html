@@ -121,9 +121,13 @@
           <div
             class="d-flex flex-column p-2 align-items-center justify-content-center"
           >
-            <button type="submit" class="btn btn-primary btn-lg">
-              Create new {{ registerForm.value.accountType }} account
-            </button>
+            <app-button
+              type="submit"
+              label="Create new {{
+                registerForm.value.accountType || ''
+              }} account"
+              [accountType]="registerForm.value.accountType || ''"
+            ></app-button>
             <p>
               <small
                 >Already have an account?

@@ -4,7 +4,7 @@ import { Transaction, User } from '../../_models/models';
 @Component({
   selector: 'app-view-transactions',
   templateUrl: './view-transactions.component.html',
-  styleUrl: './view-transactions.component.css'
+  styleUrl: './view-transactions.component.css',
 })
 export class ViewTransactionsComponent {
   @Input() user: User;
@@ -13,5 +13,4 @@ export class ViewTransactionsComponent {
   constructor() {
     this.user = {} as User;
   }
-
 }

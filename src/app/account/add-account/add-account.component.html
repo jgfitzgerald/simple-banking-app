@@ -43,9 +43,13 @@
           <span class="px-2">Savings</span>
         </label>
       </div>
-      <button type="submit" class="btn btn-primary btn-md">
-        Create new {{ createForm.value.accountType }} account
-      </button>
+      <div class="d-flex flex-row justify-content-end">
+        <app-button
+          type="submit"
+          label="Create new {{ createForm.value.accountType || '' }} account"
+          [accountType]="createForm.value.accountType || ''"
+        ></app-button>
+      </div>
     </div>
   </form>
 </div>

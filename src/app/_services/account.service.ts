@@ -30,6 +30,19 @@ export class AccountService {
     return this.users;
   }
 
+  updateUser(user: User) {
+    // Find the user in the users array
+    const index = this.users.findIndex(u => u.email === user.email);
+    if (index > -1) {
+      // Update the user in the users array
+      this.users[index] = user;
+      // Save the updated users array to localStorage
+      localStorage.setItem('users', JSON.stringify(this.users));
+      // Update the currentUser BehaviorSubject
+      this.setCurrentUser(user);
+    }
+  }
+
   setCurrentUser(user: User) {
     this.currentUser.next(user);
     // Save currentUser in localStorage

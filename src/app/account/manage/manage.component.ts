@@ -17,5 +17,9 @@ export class ManageComponent {
   constructor(private accountService: AccountService) { }
 
   user = this.accountService.getCurrentUser() || {} as User;
+
+  onUserChange(updatedUser: User) {
+    this.accountService.updateUser(updatedUser);
+  }
   
 }

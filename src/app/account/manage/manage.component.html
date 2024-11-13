@@ -38,17 +38,17 @@
     <div class="tab-content" id="nav-tabContent">
       <!-- New Account Tab -->
       <div *ngIf="activeTab === 'new-account'">
-        <app-add-account></app-add-account>
+        <app-add-account [(user)]="user"></app-add-account>
       </div>
 
       <!-- Transfer Funds Tab -->
       <div *ngIf="activeTab === 'transfer'">
-        <app-transfer></app-transfer>
+        <app-transfer [(user)]="user"></app-transfer>
       </div>
 
       <!-- Transaction History Tab -->
       <div *ngIf="activeTab === 'history'">
-        <app-view-transactions></app-view-transactions>
+        <app-view-transactions [(user)]="user"></app-view-transactions>
       </div>
     </div>
   </div>

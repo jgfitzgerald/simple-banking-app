@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Account, User } from '../../_models/models';
 
 @Component({
   selector: 'app-add-account',
@@ -7,7 +8,12 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrl: './add-account.component.css'
 })
 export class AddAccountComponent {
-  constructor(private fb: FormBuilder) {}
+  @Input() user: User;
+  @Output() userChange = new EventEmitter<User>();
+
+  constructor(private fb: FormBuilder) {
+    this.user = {} as User;
+  }
   
   createForm = this.fb.group({
     name: ['', [Validators.required]],
@@ -17,6 +23,11 @@ export class AddAccountComponent {
 
   create(): void {
     alert('Account created');
+  }
+
+  addAcount(account: Account): void {
+    this.user.accounts.push(account);
+    this.userChange.emit(this.user);
   }
   
 }

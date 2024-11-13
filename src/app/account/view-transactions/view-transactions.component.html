@@ -32,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let transaction of transactions">
+      <tr *ngFor="let transaction of user?.transactions">
         <td>{{ transaction.fromAccountId }}</td>
         <td>{{ transaction.toAccountId }}</td>
         <td>{{ transaction.amount | currency }}</td>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../../_services/account.service';
 import { User } from '../../_models/models';
@@ -9,6 +9,9 @@ import { User } from '../../_models/models';
   styleUrl: './transfer.component.css'
 })
 export class TransferComponent {
+  @Input() user: User;
+  @Output() userChange = new EventEmitter<User>();
+
   transferForm = this.fb.group({
     from: ['', [Validators.required]],
     to: ['', [Validators.required]],
@@ -20,52 +23,10 @@ export class TransferComponent {
     balance: ['', [Validators.required]],
     accountType: ['', [Validators.required]],
   });
-
-  user: User = {
-    id: '1',
-    firstname: 'John',
-    lastname: 'Doe',
-    email: 'john.doe@example.com',
-    password: 'password123', // In real applications, avoid storing passwords like this
-    accounts: [
-      {
-        id: '1',
-        name: 'John Doe - Savings',
-        balance: 5000,
-        accountType: 'Savings',
-        userId: '1',
-        transfers: [
-          { fromAccountId: '1', toAccountId: '2', amount: 1000 },
-          { fromAccountId: '1', toAccountId: '3', amount: 500 }
-        ]
-      },
-      {
-        id: '2',
-        name: 'John Doe - Chequing',
-        balance: 2000,
-        accountType: 'Chequing',
-        userId: '1',
-        transfers: [
-          { fromAccountId: '2', toAccountId: '1', amount: 1000 },
-          { fromAccountId: '2', toAccountId: '3', amount: 300 }
-        ]
-      },
-      {
-        id: '3',
-        name: 'John Doe - Business',
-        balance: 10000,
-        accountType: 'Business',
-        userId: '1',
-        transfers: [
-          { fromAccountId: '3', toAccountId: '1', amount: 500 },
-          { fromAccountId: '3', toAccountId: '2', amount: 300 },
-          { fromAccountId: '3', toAccountId: '2', amount: 700 }
-        ]
-      }
-    ]
-  };
  
-  constructor(private fb: FormBuilder, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private accountService: AccountService) {
+    this.user = {} as User;
+  }
   
   transfer(): void {
     if (this.transferForm.valid) {
@@ -85,7 +46,7 @@ export class TransferComponent {
       const name = this.transferForm.get('name')?.value ?? '';
       const balance = this.transferForm.get('balance')?.value ?? 0;
       const accountType = this.transferForm.get('accountType')?.value ?? '';
-      this.accountService.createAccount({ id: this.generateId(), name, balance, accountType, userId: 'uuid', transfers: [] });
+      this.accountService.createAccount({ id: this.generateId(), name, balance, accountType, userId: 'uuid' });
       alert('Account created successfully!');
       this.createForm.reset();
     } else {

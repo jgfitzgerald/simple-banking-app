@@ -47,8 +47,8 @@ export class RegisterComponent {
           balance: parseFloat(this.registerForm.value.balance || '0'),
           accountType: this.registerForm.value.accountType!,
           userId: 'uuid',
-          transfers: []
-        }]
+        }],
+        transactions: []
       });
     }
     else {

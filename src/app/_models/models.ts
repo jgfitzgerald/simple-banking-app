@@ -5,6 +5,7 @@ export interface User {
     email: string;
     password: string;
     accounts: Account[];
+    transactions: Transaction[];
 }
 
 export interface Account {
@@ -13,7 +14,6 @@ export interface Account {
     balance: number;
     accountType: string;
     userId: string;
-    transfers: Transaction[];
 }
   
   export interface Transaction {

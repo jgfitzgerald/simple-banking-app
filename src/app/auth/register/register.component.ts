@@ -17,11 +17,8 @@ export class RegisterComponent {
     accountName: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9 ]{1,25}$')]],
     password: ['', Validators.required],
     accountType: ['', [Validators.required]],
-    balance: ['', [Validators.required, Validators.pattern('/^\d+(\.\d{1,2})?$/')]],
+    balance: [0.00, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
   });
-
-  loading = false;
-  submitted = false;
  
   constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService) { }
 
@@ -32,10 +29,10 @@ export class RegisterComponent {
   }
 
   register(): void {
-    if (this.registerForm.valid) {
-      this.submitted = true;
-      this.loading = true;
-      this.accountService.register({
+    if (!this.registerForm.valid) {
+      return;
+    }
+      if (this.accountService.register({
         id: 'uuid',
         firstname: this.registerForm.value.firstname!,
         lastname: this.registerForm.value.lastname!,
@@ -44,15 +41,15 @@ export class RegisterComponent {
         accounts: [{
           id: 'uuid',
           name: this.registerForm.value.accountName!,
-          balance: parseFloat(this.registerForm.value.balance || '0'),
+          balance: this.registerForm.value.balance || 0.00,
           accountType: this.registerForm.value.accountType!,
           userId: 'uuid',
         }],
         transactions: []
-      });
-    }
-    else {
-      alert('invalid form')
+      })) {
+        this.router.navigate(['/home']);
+      } else {
+        return;
+      }
     }
   }
-}

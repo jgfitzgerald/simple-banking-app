@@ -1,39 +1,63 @@
-<!-- transfer-funds.component.html -->
 <div class="d-flex flex-column">
   <form [formGroup]="transferForm" (ngSubmit)="transfer()" novalidate>
     <div class="d-flex flex-column">
+      <!-- From Account Selection -->
       <div class="d-flex flex-column p-2">
         <label for="from"><small>From</small></label>
-        <input
+        <select
           class="form-control"
-          type="text"
           id="from"
           name="from"
           formControlName="from"
-        />
+        >
+          <option value="" disabled selected>Select an account</option>
+          <option *ngFor="let account of user.accounts" [value]="account.id">
+            {{ account.name }} - Balance: ${{
+              account.balance | number : "1.2-2"
+            }}
+          </option>
+        </select>
       </div>
 
+      <!-- To Account Selection -->
       <div class="d-flex flex-column p-2">
         <label for="to"><small>To</small></label>
-        <input
-          class="form-control"
-          type="text"
-          id="to"
-          name="to"
-          formControlName="to"
-        />
+        <select class="form-control" id="to" name="to" formControlName="to">
+          <option value="" disabled selected>Select an account</option>
+          <option *ngFor="let account of user.accounts" [value]="account.id">
+            {{ account.name }} - Balance: ${{
+              account.balance | number : "1.2-2"
+            }}
+          </option>
+        </select>
       </div>
+
+      <!-- Amount Input -->
       <div class="d-flex flex-column p-2">
         <label for="amount"><small>Amount</small></label>
         <input
           class="form-control"
-          type="text"
+          type="number"
           id="amount"
           name="amount"
           formControlName="amount"
         />
+        <small
+          *ngIf="
+            transferForm.get('amount')?.invalid &&
+            transferForm.get('amount')?.touched
+          "
+          class="text-danger"
+        >
+          Amount is required and should be a valid number.
+        </small>
       </div>
-      <button type="submit" class="btn btn-primary btn-md m-2">
+
+      <button
+        type="submit"
+        class="btn btn-primary btn-md m-2"
+        [disabled]="transferForm.invalid"
+      >
         Transfer Funds
       </button>
     </div>

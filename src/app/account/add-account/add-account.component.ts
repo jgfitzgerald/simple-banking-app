@@ -17,27 +17,33 @@ export class AddAccountComponent {
   
   createForm = this.fb.group({
     name: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9 ]{1,25}$')]],
-    balance: ['', [Validators.required, Validators.pattern('/^\d+(\.\d{1,2})?$/')]],
+    balance: [0.00, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
     accountType: ['', [Validators.required]],
   });
 
   create(): void {
+    // Ensure the form is valid before proceeding
+    if (this.createForm.invalid) {
+      alert('invalid form');
+      return; // Do not proceed if form is invalid
+    }
+
     // Extract data from the form
     const account: Account = {
-      id: this.generateUniqueId(), // Add a unique ID generation logic if necessary
+      id: this.generateUniqueId(),
       name: this.createForm.value.name!,
-      balance: parseFloat(this.createForm.value.balance || '0'), // Convert balance to number
+      balance: this.createForm.value.balance || 0.00,
       accountType: this.createForm.value.accountType!,
-      userId: this.user.id, // Assuming you want to link the account to the current user
+      userId: this.user.id,
     };
-  
+
     // Add the new account to the user's accounts
     this.user.accounts.push(account);
     console.log(this.user.accounts);
-  
+
     // Emit the updated user
     this.userChange.emit(this.user);
-    
+
     // Reset the form
     this.createForm.reset();
   }

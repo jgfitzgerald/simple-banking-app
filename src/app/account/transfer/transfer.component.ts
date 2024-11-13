@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AccountService } from '../../_services/account.service';
 import { Transaction, User } from '../../_models/models';
 
 @Component({
@@ -15,30 +14,39 @@ export class TransferComponent {
   transferForm = this.fb.group({
     from: ['', [Validators.required]],
     to: ['', [Validators.required]],
-    amount: [0, [Validators.required, Validators.min(0)]],
+    amount: [0, [Validators.required, Validators.min(1.00)]],
   });
  
-  constructor(private fb: FormBuilder, private accountService: AccountService) {
+  constructor(private fb: FormBuilder) {
     this.user = {} as User;
   }
   
   transfer(): void {
-    // Extract data from the form
-    const transfer: Transaction = {
+    if (this.transferForm.invalid) {
+      return;
+    }
+
+    const transaction: Transaction = {
       fromAccountId: this.transferForm.value.from!,
       toAccountId: this.transferForm.value.to!,
-      amount: this.transferForm.value.amount || 0
+      amount: this.transferForm.value.amount!,
     };
-  
-    // Add the new account to the user's accounts
-    this.user.transactions.push(transfer);
-    console.log(this.user.transactions);
-  
-    // Emit the updated user
+
+    const fromAccount = this.user.accounts.find(account => account.id === transaction.fromAccountId);
+    const toAccount = this.user.accounts.find(account => account.id === transaction.toAccountId);
+
+    if (fromAccount === toAccount) {
+      return;
+    }
+
+    if (fromAccount && toAccount) {
+      fromAccount.balance -= transaction.amount;
+      toAccount.balance += transaction.amount;
+    }
+
+    this.user.transactions.push(transaction);
     this.userChange.emit(this.user);
-    
-    // Reset the form
-    this.transferForm.reset();
+
   }
 
   private generateUniqueId(): string {

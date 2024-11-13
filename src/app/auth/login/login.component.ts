@@ -10,8 +10,6 @@ import { AccountService } from '../../_services/account.service';
   styleUrl: './login.component.css'
 })
 
-// TODO username or email conditional validation
-
 export class LoginComponent {
   loginForm = this.fb.group({
     email: ['', Validators.required],
@@ -32,7 +30,11 @@ export class LoginComponent {
     } else {
       const email = this.loginForm.value.email ?? '';
       const password = this.loginForm.value.password ?? '';
-      this.accountService.login(email, password);
+      if (this.accountService.login(email, password)) {
+        this.router.navigate(['/home']);
+      } else {
+        return;
+      }
     }
   }
 }

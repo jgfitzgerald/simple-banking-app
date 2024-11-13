@@ -42,6 +42,18 @@
               <i class="bi bi-arrow-left-right fs-2"></i>
             </a>
           </li>
+          <li>
+            <a
+              routerLink="/login"
+              (click)="logout()"
+              class="nav-link py-3 px-2 text-light"
+              title="Transfer"
+              data-bs-toggle="tooltip"
+              data-bs-placement="right"
+            >
+              <i class="bi bi-box-arrow-left fs-2"></i>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -53,14 +65,7 @@
       <!-- Profile and User Info -->
       <div
         class="container d-flex justify-content-end align-items-center mb-3 px-5"
-      >
-        <div class="d-flex align-items-center">
-          <small class="me-4">
-            {{ user.firstname || "" }} {{ user.lastname || "" }}
-          </small>
-          <i class="bi bi-person-circle fs-1"></i>
-        </div>
-      </div>
+      ></div>
       <!-- Welcome Section -->
       <div class="row px-5 py-4">
         <h1 class="display-4 text-center">

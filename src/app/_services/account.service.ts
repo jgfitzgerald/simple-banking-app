@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Account, Transaction, User } from '../_models/models';
+import { Account, User } from '../_models/models';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +8,23 @@ import { Account, Transaction, User } from '../_models/models';
 export class AccountService {
   private users: User[] = [];
   private currentUser = new BehaviorSubject<User | null>(null);
-  private accounts = new BehaviorSubject<Account[]>([]);
 
   // Observable streams for binding in components
   currentUser$ = this.currentUser.asObservable();
-  accounts$ = this.accounts.asObservable();
 
-  constructor() {}
+  constructor() {
+    // Retrieve users from localStorage if available
+    const storedUsers = localStorage.getItem('users');
+    if (storedUsers) {
+      this.users = JSON.parse(storedUsers);
+    }
+
+    // Retrieve the currentUser from localStorage if available
+    const storedCurrentUser = localStorage.getItem('currentUser');
+    if (storedCurrentUser) {
+      this.currentUser.next(JSON.parse(storedCurrentUser));
+    }
+  }
 
   getUsers() {
     return this.users;
@@ -22,53 +32,47 @@ export class AccountService {
 
   setCurrentUser(user: User) {
     this.currentUser.next(user);
+    // Save currentUser in localStorage
+    localStorage.setItem('currentUser', JSON.stringify(user));
   }
 
   getCurrentUser() {
     return this.currentUser.value;
   }
 
-  createAccount(account: Account) {
-    const accounts = this.accounts.getValue();
-    accounts.push(account);
-    this.accounts.next(accounts); // Notify subscribers of the update
-  }
-
-  login(email: string, password: string) {
+  login(email: string, password: string): boolean {
+    // Search for the user by email and password
     const user = this.users.find(u => u.email === email && u.password === password);
     if (user) {
       this.setCurrentUser(user);
+      return true;
     } else {
-      alert('Username or password is incorrect');
+      return false;
     }
   }
 
-  register(user: User) {
+  register(user: User): boolean {
+    // Check if the user already exists by email
     const exists = this.users.find(u => u.email === user.email);
     if (exists) {
       alert('An account with this email already exists');
-      return;
+      return false;
     }
+    // Add the user to the users array
     this.users.push(user);
+    
+    // Save the updated users array to localStorage
+    localStorage.setItem('users', JSON.stringify(this.users));
+
+    // Set the current user after registration
     this.setCurrentUser(user);
+    return true;
   }
 
-  transferFunds(transaction: Transaction): { success: boolean; message: string } {
-    const accounts = this.accounts.getValue();
-    const fromAccount = accounts.find(acc => acc.id === transaction.fromAccountId);
-    const toAccount = accounts.find(acc => acc.id === transaction.toAccountId);
-
-    if (!fromAccount) return { success: false, message: 'Source account not found' };
-    if (!toAccount) return { success: false, message: 'Destination account not found' };
-
-    if (fromAccount.balance < transaction.amount) {
-      return { success: false, message: 'Insufficient funds' };
-    }
-
-    fromAccount.balance -= transaction.amount;
-    toAccount.balance += transaction.amount;
-
-    this.accounts.next(accounts); // Notify subscribers of the balance update
-    return { success: true, message: 'Transfer successful' };
+  logout(): boolean {
+    this.currentUser.next(null);
+    localStorage.removeItem('currentUser');
+    return true;
   }
+
 }

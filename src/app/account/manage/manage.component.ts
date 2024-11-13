@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { AddAccountComponent } from '../add-account/add-account.component';
-import { TransferComponent } from '../transfer/transfer.component';
-import { ViewTransactionsComponent } from '../view-transactions/view-transactions.component';
 import { User } from '../../_models/models';
 
 @Component({

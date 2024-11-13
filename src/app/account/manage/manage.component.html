@@ -5,12 +5,21 @@
     <div class="list-group" id="list-tab" role="tablist">
       <a
         class="list-group-item list-group-item-action"
+        [ngClass]="{ active: activeTab === 'view-account' }"
+        (click)="setActiveTab('view-account')"
+        role="tab"
+        aria-controls="list-view-account"
+      >
+        View Banking Accounts
+      </a>
+      <a
+        class="list-group-item list-group-item-action"
         [ngClass]="{ active: activeTab === 'new-account' }"
         (click)="setActiveTab('new-account')"
         role="tab"
         aria-controls="list-new-account"
       >
-        New Account
+        Create New Account
       </a>
       <a
         class="list-group-item list-group-item-action"
@@ -37,6 +46,10 @@
   <div class="col-8 bg-light p-4">
     <div class="tab-content" id="nav-tabContent">
       <!-- New Account Tab -->
+      <div *ngIf="activeTab === 'view-account'">
+        <app-view-account [(user)]="user"></app-view-account>
+      </div>
+
       <div *ngIf="activeTab === 'new-account'">
         <app-add-account [(user)]="user"></app-add-account>
       </div>

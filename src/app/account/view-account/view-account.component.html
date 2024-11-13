@@ -1,9 +1,4 @@
 <div class="container-fluid">
-  <!-- Welcome Section -->
-  <div class="row px-5 py-4">
-    <h1 class="display-4 text-center">Welcome, {{ user.firstname || "" }}!</h1>
-  </div>
-
   <!-- Account List Section -->
   <div class="row gx-5 py-2 px-5">
     <div class="col-12 mb-4" *ngFor="let account of user?.accounts">

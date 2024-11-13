@@ -10,13 +10,15 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ManageComponent } from './manage/manage.component';
+import { ViewAccountComponent } from './view-account/view-account.component';
 
 @NgModule({
   declarations: [
     AddAccountComponent,
     ViewTransactionsComponent,
     TransferComponent,
-    ManageComponent
+    ManageComponent,
+    ViewAccountComponent
   ],
   imports: [
     CommonModule,

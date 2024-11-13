@@ -14,10 +14,10 @@ export class RegisterComponent {
     firstname: ['', [Validators.required, Validators.pattern(/^[a-z ,.'-]+$/i)]],
     lastname: ['', [Validators.required, Validators.pattern(/^[a-z ,.'-]+$/i)]],
     email: ['', [Validators.required, Validators.email]],
-    accountName: ['', [Validators.required]],
+    accountName: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9 ]{1,25}$')]],
     password: ['', Validators.required],
     accountType: ['', [Validators.required]],
-    balance: ['', [Validators.required]], //TODO currency pipe
+    balance: ['', [Validators.required, Validators.pattern('/^\d+(\.\d{1,2})?$/')]],
   });
 
   loading = false;

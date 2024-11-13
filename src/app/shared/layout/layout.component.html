@@ -22,7 +22,7 @@
         >
           <li class="nav-item">
             <a
-              routerLink="/account"
+              routerLink="/home"
               class="nav-link py-3 px-2 text-light"
               title="Home"
               data-bs-toggle="tooltip"
@@ -33,7 +33,7 @@
           </li>
           <li>
             <a
-              routerLink="/account/manage"
+              routerLink="/home/account"
               class="nav-link py-3 px-2 text-light"
               title="Transfer"
               data-bs-toggle="tooltip"
@@ -60,6 +60,12 @@
           </small>
           <i class="bi bi-person-circle fs-1"></i>
         </div>
+      </div>
+      <!-- Welcome Section -->
+      <div class="row px-5 py-4">
+        <h1 class="display-4 text-center">
+          Welcome, {{ user.firstname || "" }}!
+        </h1>
       </div>
       <router-outlet></router-outlet>
     </div>

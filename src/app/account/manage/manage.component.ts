@@ -8,7 +8,7 @@ import { AccountService } from '../../_services/account.service';
   styleUrls: ['./manage.component.css']
 })
 export class ManageComponent {
-  activeTab: string = 'new-account'; // Default tab is 'New Account'
+  activeTab: string = 'view-account';
 
   setActiveTab(tab: string): void {
     this.activeTab = tab;

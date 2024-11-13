@@ -1,5 +1,5 @@
 <div class="d-flex flex-column">
-  <form [formGroup]="transferForm" (ngSubmit)="transfer()" novalidate>
+  <form [formGroup]="transferForm" (ngSubmit)="transfer()">
     <div class="d-flex flex-column">
       <!-- From Account Selection -->
       <div class="d-flex flex-column p-2">
@@ -30,6 +30,12 @@
             }}
           </option>
         </select>
+        <small
+          *ngIf="transferForm.errors?.['sameAccounts'] && transferForm.touched"
+          class="text-danger mt-1"
+        >
+          Accounts cannot be the same.
+        </small>
       </div>
 
       <!-- Amount Input -->
@@ -42,15 +48,6 @@
           name="amount"
           formControlName="amount"
         />
-        <small
-          *ngIf="
-            transferForm.get('amount')?.invalid &&
-            transferForm.get('amount')?.touched
-          "
-          class="text-danger"
-        >
-          Amount is required and should be a valid number.
-        </small>
       </div>
 
       <button

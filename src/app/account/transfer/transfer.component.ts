@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Transaction, User } from '../../_models/models';
+import { generateTransactionId } from '../../_helpers/utils';
 
 @Component({
   selector: 'app-transfer',
@@ -10,46 +11,54 @@ import { Transaction, User } from '../../_models/models';
 export class TransferComponent {
   @Input() user: User;
   @Output() userChange = new EventEmitter<User>();
-
-  transferForm = this.fb.group({
-    from: ['', [Validators.required]],
-    to: ['', [Validators.required]],
-    amount: [0, [Validators.required, Validators.min(1.00)]],
-  });
  
+  transferForm = this.fb.group(
+    {
+      from: ['', Validators.required],
+      to: ['', Validators.required],
+      amount: [0, [Validators.required, Validators.min(1)]],
+    }
+  );
+
   constructor(private fb: FormBuilder) {
     this.user = {} as User;
   }
-  
+
   transfer(): void {
     if (this.transferForm.invalid) {
       return;
     }
 
     const transaction: Transaction = {
+      id: generateTransactionId(),
       fromAccountId: this.transferForm.value.from!,
       toAccountId: this.transferForm.value.to!,
       amount: this.transferForm.value.amount!,
     };
 
-    const fromAccount = this.user.accounts.find(account => account.id === transaction.fromAccountId);
-    const toAccount = this.user.accounts.find(account => account.id === transaction.toAccountId);
-
-    if (fromAccount === toAccount) {
+    if (transaction.fromAccountId === transaction.toAccountId) {
+      alert('Cannot transfer to the same account');
       return;
     }
 
-    if (fromAccount && toAccount) {
-      fromAccount.balance -= transaction.amount;
-      toAccount.balance += transaction.amount;
+    const fromAccount = this.user.accounts.find(account => account.id === transaction.fromAccountId);
+
+    if (fromAccount && fromAccount.balance < transaction.amount) {
+      alert('Insufficient funds');
+      return;
     }
 
-    this.user.transactions.push(transaction);
-    this.userChange.emit(this.user);
+    const toAccount = this.user.accounts.find(account => account.id === transaction.toAccountId);
 
-  }
+    if (fromAccount && toAccount && fromAccount.balance >= transaction.amount) {
+      fromAccount.balance -= transaction.amount;
+      toAccount.balance += transaction.amount;
 
-  private generateUniqueId(): string {
-    return Math.random().toString(36).substr(2, 9);
+      // Add the transaction
+      this.user.transactions.push(transaction);
+
+      // Emit the updated user data
+      this.userChange.emit(this.user);
+    }
   }
 }

@@ -13,4 +13,9 @@ export class ViewTransactionsComponent {
   constructor() {
     this.user = {} as User;
   }
+
+  getAccountName(accountId: string): string {
+    const account = this.user.accounts.find(account => account.id === accountId);
+    return account ? account.name : 'null';
+  }
 }

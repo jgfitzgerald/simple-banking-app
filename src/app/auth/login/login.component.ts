@@ -33,6 +33,7 @@ export class LoginComponent {
       if (this.accountService.login(email, password)) {
         this.router.navigate(['/home']);
       } else {
+        alert("Email or password is incorrect.");
         return;
       }
     }

@@ -13,7 +13,6 @@ export interface Account {
     name: string;
     balance: number;
     accountType: string;
-    userId: string;
 }
   
   export interface Transaction {

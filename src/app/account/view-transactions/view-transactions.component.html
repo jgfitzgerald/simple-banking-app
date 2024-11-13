@@ -23,8 +23,8 @@
     <tbody>
       <tr *ngFor="let transaction of user.transactions">
         <td>{{ transaction.id }}</td>
-        <td>{{ transaction.fromAccountId }}</td>
-        <td>{{ transaction.toAccountId }}</td>
+        <td>{{ getAccountName(transaction.fromAccountId) }}</td>
+        <td>{{ getAccountName(transaction.toAccountId) }}</td>
         <td>{{ transaction.amount | currency }}</td>
       </tr>
     </tbody>

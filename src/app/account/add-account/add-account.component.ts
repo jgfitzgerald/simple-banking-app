@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Account, User } from '../../_models/models';
+import { generateAccountId } from '../../_helpers/utils';
 
 @Component({
   selector: 'app-add-account',
@@ -24,17 +25,16 @@ export class AddAccountComponent {
   create(): void {
     // Ensure the form is valid before proceeding
     if (this.createForm.invalid) {
-      alert('invalid form');
+      alert('Error creating account.');
       return; // Do not proceed if form is invalid
     }
 
     // Extract data from the form
     const account: Account = {
-      id: this.generateUniqueId(),
+      id: generateAccountId(),
       name: this.createForm.value.name!,
       balance: this.createForm.value.balance || 0.00,
       accountType: this.createForm.value.accountType!,
-      userId: this.user.id,
     };
 
     // Add the new account to the user's accounts
@@ -47,9 +47,4 @@ export class AddAccountComponent {
     // Reset the form
     this.createForm.reset();
   }
-  
-  generateUniqueId(): string {
-    return 'acc-' + Math.random().toString(36).substr(2, 9);
-  }
-
 }

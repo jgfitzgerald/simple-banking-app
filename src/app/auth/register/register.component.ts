@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../../_services/account.service';
+import { generateAccountId, generateUserId } from '../../_helpers/utils';
 
 @Component({
   selector: 'app-register',
@@ -33,22 +34,22 @@ export class RegisterComponent {
       return;
     }
       if (this.accountService.register({
-        id: 'uuid',
+        id: generateUserId(),
         firstname: this.registerForm.value.firstname!,
         lastname: this.registerForm.value.lastname!,
         email: this.registerForm.value.email!,
         password: this.registerForm.value.password!,
         accounts: [{
-          id: 'uuid',
+          id: generateAccountId(),
           name: this.registerForm.value.accountName!,
           balance: this.registerForm.value.balance || 0.00,
           accountType: this.registerForm.value.accountType!,
-          userId: 'uuid',
         }],
         transactions: []
       })) {
         this.router.navigate(['/home']);
       } else {
+        alert("Registration failed. Please try again.");
         return;
       }
     }

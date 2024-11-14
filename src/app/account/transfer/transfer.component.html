@@ -30,12 +30,6 @@
             }}
           </option>
         </select>
-        <small
-          *ngIf="transferForm.errors?.['sameAccounts'] && transferForm.touched"
-          class="text-danger mt-1"
-        >
-          Accounts cannot be the same.
-        </small>
       </div>
 
       <!-- Amount Input -->
@@ -48,12 +42,25 @@
           name="amount"
           formControlName="amount"
         />
+        <div class="small text-danger">
+          <div
+            *ngIf="transferForm.get('amount')?.errors?.['pattern'] || transferForm.get('amount')?.errors?.['min']"
+          >
+            Invalid number format. Amount must at least 1, up to two decimal
+            places.
+          </div>
+          <div *ngIf="transferForm.value.from && insufficientFunds()">
+            Insufficient funds. Please select a different account or amount.
+          </div>
+        </div>
       </div>
 
       <button
         type="submit"
         class="btn btn-primary btn-md m-2"
-        [disabled]="transferForm.invalid"
+        [disabled]="
+          transferForm.invalid || sameAccounts() || insufficientFunds()
+        "
       >
         Transfer Funds
       </button>

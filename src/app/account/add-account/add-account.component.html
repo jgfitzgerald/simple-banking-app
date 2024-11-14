@@ -11,6 +11,17 @@
           name="name"
           formControlName="name"
         />
+        <div
+          *ngIf="submitted && createForm.get('name')?.invalid"
+          class="small text-danger"
+        >
+          <div *ngIf="createForm.get('name')?.errors?.['required']">
+            Please enter a name.
+          </div>
+          <div *ngIf="createForm.get('name')?.errors?.['maxlength']">
+            Account names cannot exceed 25 characters.
+          </div>
+        </div>
       </div>
 
       <div class="d-flex flex-column p-2">
@@ -22,6 +33,20 @@
           name="balance"
           formControlName="balance"
         />
+        <div
+          *ngIf="submitted && createForm.get('balance')?.invalid"
+          class="small text-danger"
+        >
+          <div *ngIf="createForm.get('balance')?.errors?.['required']">
+            Initial balance is required.
+          </div>
+          <div
+            *ngIf="createForm.get('balance')?.errors?.['pattern'] || createForm.get('balance')?.errors?.['min']"
+          >
+            Invalid number format. Balance must be a non-negative number, up to
+            two decimal places.
+          </div>
+        </div>
       </div>
       <div class="d-flex flex-row justify-content-center py-2">
         <label class="px-2 form-check-label">

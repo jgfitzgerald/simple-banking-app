@@ -12,11 +12,13 @@ export class TransferComponent {
   @Input() user: User;
   @Output() userChange = new EventEmitter<User>();
  
+  submitted = false;
+
   transferForm = this.fb.group(
     {
       from: ['', Validators.required],
       to: ['', Validators.required],
-      amount: [0, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      amount: [1, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
     }
   );
 
@@ -26,6 +28,8 @@ export class TransferComponent {
 
   transfer(): void {
     if (this.transferForm.invalid) {
+      this.submitted = true;
+      alert("Error transferring funds.");
       return;
     }
 
@@ -36,18 +40,7 @@ export class TransferComponent {
       amount: this.transferForm.value.amount!,
     };
 
-    if (transaction.fromAccountId === transaction.toAccountId) {
-      alert('Cannot transfer to the same account');
-      return;
-    }
-
     const fromAccount = this.user.accounts.find(account => account.id === transaction.fromAccountId);
-
-    if (fromAccount && fromAccount.balance < transaction.amount) {
-      alert('Insufficient funds');
-      return;
-    }
-
     const toAccount = this.user.accounts.find(account => account.id === transaction.toAccountId);
 
     if (fromAccount && toAccount && fromAccount.balance >= transaction.amount) {
@@ -60,5 +53,15 @@ export class TransferComponent {
       // Emit the updated user data
       this.userChange.emit(this.user);
     }
+  }
+
+  sameAccounts(): boolean {
+    return this.transferForm.value.from === this.transferForm.value.to;
+  }
+
+  insufficientFunds(): boolean {
+    const fromAccount = this.user.accounts.find(account => account.id === this.transferForm.value.from);
+    const amount = this.transferForm.value.amount ?? 0;
+    return (fromAccount?.balance ?? 0) < amount;
   }
 }

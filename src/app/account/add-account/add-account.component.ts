@@ -15,9 +15,11 @@ export class AddAccountComponent {
   constructor(private fb: FormBuilder) {
     this.user = {} as User;
   }
+
+  submitted = false;
   
   createForm = this.fb.group({
-    name: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9 ]{1,25}$')]],
+    name: ['', [Validators.required, Validators.maxLength(25)]],
     balance: [0.00, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
     accountType: ['', [Validators.required]],
   });
@@ -25,6 +27,7 @@ export class AddAccountComponent {
   create(): void {
     // Ensure the form is valid before proceeding
     if (this.createForm.invalid) {
+      this.submitted = true;
       alert('Error creating account.');
       return; // Do not proceed if form is invalid
     }

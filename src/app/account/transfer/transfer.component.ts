@@ -19,6 +19,17 @@ export class TransferComponent {
       from: ['', Validators.required],
       to: ['', Validators.required],
       amount: [1, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+    },
+    {
+      validators: () => {
+        if (this.sameAccounts()) {
+          return { sameAccounts: true };
+        }
+        if (this.insufficientFunds()) {
+          return { insufficientFunds: true };
+        }
+        return null;
+      },
     }
   );
 
@@ -56,7 +67,7 @@ export class TransferComponent {
   }
 
   sameAccounts(): boolean {
-    return this.transferForm.value.from === this.transferForm.value.to;
+    return this.transferForm?.value.from === this.transferForm?.value.to;
   }
 
   insufficientFunds(): boolean {

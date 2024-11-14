@@ -1,27 +1,58 @@
-# BankingApp
+# Trustic Banking
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
+A simple banking application for a fake bank named 'Trustic Banking'. Allows users to register an account, manage their banking accounts, transfer funds, and view past transactions. Built with Angular.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Usage](#usage)
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **User Authentication**: Login and registration forms with form validation.
+- **Account Management**: Users can view their bank accounts with details like balance and account name.
+- **Fund Transfer**: Transfer funds between accounts.
+- **Transaction History**: View and search through a list of recent transactions.
+- **Real-time Updates**: Two-way data binding allows updates to reflect immediately across components.
+- **Router**: Angular Router to navigate between the login/register pages and the home page.
+- **Button**: Reusable button component that is shared across the application.
 
-## Build
+### Prerequisites
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ensure you have the following installed:
 
-## Running unit tests
+- [Node.js](https://nodejs.org/) (v14 or above)
+- [Angular CLI](https://angular.io/cli)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation
 
-## Running end-to-end tests
+1. **Clone the Repository**:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   git clone https://github.com/jgfitzgerald/simple-banking-app.git
+   ```
 
-## Further help
+2. **Install Dependencies**:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   npm install
+   ```
+
+3. **Run the App**:
+
+   ```bash
+   ng serve
+   ```
+
+   The app will be available at `http://localhost:4200`.
+
+## Usage
+
+1. **Login/Register**: Create an account with any valid email.
+2. **View Accounts**: On the dashboard, view a list of your bank accounts.
+3. **Transfer Funds**: Select the accounts and amount to initiate a transfer.
+4. **Transaction History**: Track your past transactions.
+
+---

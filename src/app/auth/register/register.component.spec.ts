@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -12,7 +13,8 @@ describe('RegisterComponent', () => {
       declarations: [RegisterComponent],
       imports: [
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        SharedModule
       ]
     })
     .compileComponents();

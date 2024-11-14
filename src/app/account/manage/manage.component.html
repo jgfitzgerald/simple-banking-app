@@ -70,10 +70,7 @@
 
       <!-- Transaction History Tab -->
       <div *ngIf="activeTab === 'history'">
-        <app-view-transactions
-          [(user)]="user"
-          (userChange)="onUserChange($event)"
-        ></app-view-transactions>
+        <app-view-transactions [user]="user"></app-view-transactions>
       </div>
     </div>
   </div>

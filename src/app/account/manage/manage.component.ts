@@ -5,7 +5,7 @@ import { AccountService } from '../../_services/account.service';
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
-  styleUrls: ['./manage.component.css']
+  styleUrl: './manage.component.css'
 })
 export class ManageComponent {
   activeTab: string = 'view-account';

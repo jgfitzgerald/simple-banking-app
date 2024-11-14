@@ -12,9 +12,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'home', canActivate: [authGuard], component: LayoutComponent, children: [
     { path: '', component: ManageComponent },
-    { path: 'account', component: ManageComponent },
   ]},
-  { path: '**', redirectTo: '/register' } // Wildcard route
+  { path: '**', redirectTo: '/register' }
 ];
 
 @NgModule({

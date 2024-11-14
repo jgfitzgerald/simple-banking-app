@@ -1,14 +1,25 @@
 <div class="container">
-  <!-- Search and Account Selection
   <div class="d-flex justify-content-start mb-3">
+    <!-- Account Dropdown -->
+    <div class="me-2 w-25">
+      <select class="form-control" [(ngModel)]="selectedAccountId">
+        <option value="">Select Account</option>
+        <option *ngFor="let account of user.accounts" [value]="account.id">
+          {{ account.name }} - Balance: {{ account.balance | currency }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Search Input -->
     <div class="w-75">
       <input
         type="text"
         class="form-control"
         placeholder="Search by Transaction ID"
+        [(ngModel)]="searchQuery"
       />
     </div>
-  </div> -->
+  </div>
 
   <!-- Transaction Table -->
   <table class="table table-bordered">
@@ -21,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let transaction of user.transactions">
+      <tr *ngFor="let transaction of filterTransactions()">
         <td>{{ transaction.id }}</td>
         <td>{{ getAccountName(transaction.fromAccountId) }}</td>
         <td>{{ getAccountName(transaction.toAccountId) }}</td>

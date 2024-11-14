@@ -16,7 +16,7 @@ export class TransferComponent {
     {
       from: ['', Validators.required],
       to: ['', Validators.required],
-      amount: [0, [Validators.required, Validators.min(1)]],
+      amount: [0, [Validators.required, Validators.min(1), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
     }
   );
 

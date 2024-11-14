@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAccountComponent } from './add-account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../../shared/shared.module';
 
 describe('AddAccountComponent', () => {
   let component: AddAccountComponent;
@@ -12,7 +13,8 @@ describe('AddAccountComponent', () => {
       declarations: [AddAccountComponent],
       imports: [
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        SharedModule
       ]
     })
     .compileComponents();

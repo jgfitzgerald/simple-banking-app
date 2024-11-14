@@ -8,7 +8,7 @@
       >
         <!-- Logo / Bank Icon -->
         <a
-          routerLink="/"
+          routerLink="/home"
           class="d-block p-3 link-light"
           title="Home"
           data-bs-toggle="tooltip"
@@ -20,20 +20,9 @@
         <ul
           class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center"
         >
-          <li class="nav-item">
-            <a
-              routerLink="/home"
-              class="nav-link py-3 px-2 text-light"
-              title="Home"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-            >
-              <i class="bi bi-house fs-2"></i>
-            </a>
-          </li>
           <li>
             <a
-              routerLink="/home/account"
+              routerLink="/home"
               class="nav-link py-3 px-2 text-light"
               title="Transfer"
               data-bs-toggle="tooltip"
@@ -47,7 +36,7 @@
               routerLink="/login"
               (click)="logout()"
               class="nav-link py-3 px-2 text-light"
-              title="Transfer"
+              title="Logout"
               data-bs-toggle="tooltip"
               data-bs-placement="right"
             >

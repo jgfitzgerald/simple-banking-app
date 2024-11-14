@@ -4,7 +4,7 @@ import { AddAccountComponent } from './add-account/add-account.component';
 import { ViewTransactionsComponent } from './view-transactions/view-transactions.component';
 import { TransferComponent } from './transfer/transfer.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Ensure this is here
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from '../app-routing.module';

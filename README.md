@@ -1,5 +1,8 @@
 # Trustic Banking
 
+![ScreenShot](/screenshots/register.png)
+![ScreenShot](/screenshots/transfer.png)
+
 A simple banking application for a fake bank named 'Trustic Banking'. Allows users to register an account, manage their banking accounts, transfer funds, and view past transactions. Built with Angular.
 
 ## Table of Contents

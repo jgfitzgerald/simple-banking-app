@@ -68,7 +68,6 @@ export class AccountService {
     // Check if the user already exists by email
     const exists = this.users.find(u => u.email === user.email);
     if (exists) {
-      alert('An account with this email already exists');
       return false;
     }
     // Add the user to the users array

@@ -24,6 +24,7 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService) { }
 
   hide : boolean = true;
+  submitted = false;
 
   toggleShow() {
     this.hide = !this.hide;
@@ -31,6 +32,7 @@ export class RegisterComponent {
 
   register(): void {
     if (!this.registerForm.valid) {
+      this.submitted = true;
       return;
     }
       if (this.accountService.register({
@@ -49,7 +51,7 @@ export class RegisterComponent {
       })) {
         this.router.navigate(['/home']);
       } else {
-        alert("Registration failed. Please try again.");
+        alert("An account with this email already exists.");
         return;
       }
     }

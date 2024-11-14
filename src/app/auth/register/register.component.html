@@ -15,6 +15,24 @@
                 name="firstname"
                 formControlName="firstname"
               />
+              <div
+                *ngIf="
+                  submitted &&
+                  registerForm.get('firstname')?.invalid &&
+                  (registerForm.get('firstname')?.touched ||
+                    registerForm.get('firstname')?.dirty)
+                "
+                class="small text-danger"
+              >
+                <div
+                  *ngIf="registerForm.get('firstname')?.errors?.['required']"
+                >
+                  First name is required.
+                </div>
+                <div *ngIf="registerForm.get('firstname')?.errors?.['pattern']">
+                  First name cannot contain special characters.
+                </div>
+              </div>
             </div>
 
             <div class="d-flex flex-column px-2">
@@ -26,10 +44,26 @@
                 name="lastname"
                 formControlName="lastname"
               />
+              <div
+                *ngIf="
+                  submitted &&
+                  registerForm.get('lastname')?.invalid &&
+                  (registerForm.get('lastname')?.touched ||
+                    registerForm.get('lastname')?.dirty)
+                "
+                class="small text-danger"
+              >
+                <div *ngIf="registerForm.get('lastname')?.errors?.['required']">
+                  Last name is required.
+                </div>
+                <div *ngIf="registerForm.get('lastname')?.errors?.['pattern']">
+                  Last name cannot contain special characters.
+                </div>
+              </div>
             </div>
           </div>
 
-          <p class="d-flex flex-column px-2">
+          <div class="d-flex flex-column px-2">
             <label for="email"><small>Email</small></label>
             <input
               class="form-control"
@@ -38,7 +72,23 @@
               name="email"
               formControlName="email"
             />
-          </p>
+            <div
+              *ngIf="
+                submitted &&
+                registerForm.get('email')?.invalid &&
+                (registerForm.get('email')?.touched ||
+                  registerForm.get('email')?.dirty)
+              "
+              class="small text-danger"
+            >
+              <div *ngIf="registerForm.get('email')?.errors?.['required']">
+                Email is required.
+              </div>
+              <div *ngIf="registerForm.get('email')?.errors?.['email']">
+                Please enter a valid email.
+              </div>
+            </div>
+          </div>
 
           <div class="d-flex flex-column px-2">
             <label for="password"><small>Password</small></label>
@@ -73,9 +123,22 @@
                 </span>
               </div>
             </div>
+            <div
+              *ngIf="
+                submitted &&
+                registerForm.get('password')?.invalid &&
+                (registerForm.get('password')?.touched ||
+                  registerForm.get('password')?.dirty)
+              "
+              class="small text-danger"
+            >
+              <div *ngIf="registerForm.get('password')?.errors?.['required']">
+                Password is required.
+              </div>
+            </div>
           </div>
 
-          <p class="d-flex flex-column px-2">
+          <div class="d-flex flex-column px-2">
             <label for="accountName"><small>Account Name</small></label>
             <input
               class="form-control"
@@ -84,7 +147,26 @@
               name="accountName"
               formControlName="accountName"
             />
-          </p>
+            <div
+              *ngIf="
+                submitted &&
+                registerForm.get('accountName')?.invalid &&
+                (registerForm.get('accountName')?.touched ||
+                  registerForm.get('accountName')?.dirty)
+              "
+              class="small text-danger"
+            >
+              <div
+                *ngIf="registerForm.get('accountName')?.errors?.['required']"
+              >
+                Account name is required.
+              </div>
+              <div *ngIf="registerForm.get('accountName')?.errors?.['pattern']">
+                Account name must be between 1 and 25 characters and can only
+                contain letters, numbers, and spaces.
+              </div>
+            </div>
+          </div>
 
           <div class="d-flex flex-row justify-content-center py-2">
             <label class="px-2 form-check-label">
@@ -106,8 +188,20 @@
               <span class="px-2">Savings</span>
             </label>
           </div>
+          <div class="d-flex flex-row justify-content-center">
+            <div
+              *ngIf="submitted && registerForm.get('accountType')?.invalid"
+              class="small text-danger"
+            >
+              <div
+                *ngIf="registerForm.get('accountType')?.errors?.['required']"
+              >
+                Account type is required.
+              </div>
+            </div>
+          </div>
 
-          <p class="d-flex flex-column px-2">
+          <div class="d-flex flex-column px-2">
             <label for="balance"><small>Balance</small></label>
             <input
               class="form-control"
@@ -116,7 +210,26 @@
               name="balance"
               formControlName="balance"
             />
-          </p>
+            <div
+              *ngIf="
+                submitted &&
+                registerForm.get('balance')?.invalid &&
+                (registerForm.get('balance')?.touched ||
+                  registerForm.get('balance')?.dirty)
+              "
+              class="small text-danger"
+            >
+              <div *ngIf="registerForm.get('balance')?.errors?.['required']">
+                Balance is required.
+              </div>
+              <div *ngIf="registerForm.get('balance')?.errors?.['min']">
+                Balance cannot be negative.
+              </div>
+              <div *ngIf="registerForm.get('balance')?.errors?.['pattern']">
+                Balance must be a valid number with up to two decimal places.
+              </div>
+            </div>
+          </div>
 
           <div
             class="d-flex flex-column p-2 align-items-center justify-content-center"

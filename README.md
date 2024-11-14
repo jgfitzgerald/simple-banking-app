@@ -32,6 +32,7 @@ Ensure you have the following installed:
 
    ```bash
    git clone https://github.com/jgfitzgerald/simple-banking-app.git
+   cd simple-banking-app
    ```
 
 2. **Install Dependencies**:
@@ -46,7 +47,7 @@ Ensure you have the following installed:
    ng serve
    ```
 
-   The app will be available at `http://localhost:4200`.
+The app will be available at `http://localhost:4200`.
 
 ## Usage
 
@@ -54,5 +55,8 @@ Ensure you have the following installed:
 2. **View Accounts**: On the dashboard, view a list of your bank accounts.
 3. **Transfer Funds**: Select the accounts and amount to initiate a transfer.
 4. **Transaction History**: Track your past transactions.
+5. **Testing via Karma**:
 
----
+   ```bash
+   ng serve
+   ```

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewTransactionsComponent } from './view-transactions.component';
+import { FormsModule } from '@angular/forms';
 
 describe('ViewTransactionsComponent', () => {
   let component: ViewTransactionsComponent;
@@ -8,7 +9,8 @@ describe('ViewTransactionsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ViewTransactionsComponent]
+      declarations: [ViewTransactionsComponent],
+      imports: [FormsModule]
     })
     .compileComponents();
     

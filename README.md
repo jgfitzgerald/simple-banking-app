@@ -58,5 +58,5 @@ The app will be available at `http://localhost:4200`.
 5. **Testing via Karma**:
 
    ```bash
-   ng serve
+   ng test
    ```

@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../core/services/account.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent {
     password: ['', Validators.required]
   });
  
-  constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService, private toastr: ToastrService) { }
 
   hide : boolean = true;
 
@@ -26,6 +27,7 @@ export class LoginComponent {
 
   login(): void {
     if (this.loginForm.invalid) {
+      this.toastr.error('There was an error logging in.');
       return;
     } else {
       const email = this.loginForm.value.email ?? '';
@@ -33,7 +35,7 @@ export class LoginComponent {
       if (this.accountService.login(email, password)) {
         this.router.navigate(['/home']);
       } else {
-        alert("Email or password is incorrect.");
+        this.toastr.error('Email or password is incorrect.');
         return;
       }
     }

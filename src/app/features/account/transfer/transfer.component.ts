@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Transaction, User } from '../../../shared/models/models';
 import { generateTransactionId } from '../../../core/utils/generate-ids';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-transfer',
@@ -33,14 +34,14 @@ export class TransferComponent {
     }
   );
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService) {
     this.user = {} as User;
   }
 
   transfer(): void {
     if (this.transferForm.invalid) {
       this.submitted = true;
-      alert("Error transferring funds.");
+      this.toastr.error('Error transferring funds');
       return;
     }
 
@@ -63,6 +64,8 @@ export class TransferComponent {
 
       // Emit the updated user data
       this.userChange.emit(this.user);
+
+      this.toastr.success('Transfer was successful.');
     }
   }
 

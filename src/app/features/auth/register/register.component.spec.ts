@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterComponent } from './register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -14,7 +15,8 @@ describe('RegisterComponent', () => {
       imports: [
         ReactiveFormsModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        ToastrModule.forRoot()
       ]
     })
     .compileComponents();

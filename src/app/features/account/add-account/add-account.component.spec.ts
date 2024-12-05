@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddAccountComponent } from './add-account.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '../../../shared/shared.module';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('AddAccountComponent', () => {
   let component: AddAccountComponent;
@@ -14,7 +15,8 @@ describe('AddAccountComponent', () => {
       imports: [
         ReactiveFormsModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        ToastrModule.forRoot()
       ]
     })
     .compileComponents();

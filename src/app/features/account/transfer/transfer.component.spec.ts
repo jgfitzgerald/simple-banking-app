@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TransferComponent } from './transfer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('TransferComponent', () => {
   let component: TransferComponent;
@@ -12,7 +13,8 @@ describe('TransferComponent', () => {
       declarations: [TransferComponent],
       imports: [
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        ToastrModule.forRoot()
       ]
     })
     .compileComponents();

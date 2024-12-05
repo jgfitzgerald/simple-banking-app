@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Account, User } from '../../../shared/models/models';
 import { generateAccountId } from '../../../core/utils/generate-ids';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-account',
@@ -12,7 +13,7 @@ export class AddAccountComponent {
   @Input() user: User;
   @Output() userChange = new EventEmitter<User>();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private toastr: ToastrService) {
     this.user = {} as User;
   }
 
@@ -28,7 +29,7 @@ export class AddAccountComponent {
     // Ensure the form is valid before proceeding
     if (this.createForm.invalid) {
       this.submitted = true;
-      alert('Error creating account.');
+      this.toastr.error('Error creating account.');
       return; // Do not proceed if form is invalid
     }
 
@@ -49,5 +50,7 @@ export class AddAccountComponent {
 
     // Reset the form
     this.createForm.reset();
+
+    this.toastr.success('Account successfully created.');
   }
 }

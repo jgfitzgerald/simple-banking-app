@@ -11,6 +11,8 @@ import { AuthModule } from './features/auth/auth.module';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     AccountModule,
     AuthModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

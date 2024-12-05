@@ -4,6 +4,7 @@ import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '../../../core/services/account.service';
 import { generateAccountId, generateUserId } from '../../../core/utils/generate-ids';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ export class RegisterComponent {
     balance: [0.00, [Validators.required, Validators.min(0), Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
   });
  
-  constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService) { }
+  constructor(private fb: FormBuilder, private router: Router, private accountService: AccountService, private toastr: ToastrService) { }
 
   hide : boolean = true;
   submitted = false;
@@ -33,6 +34,7 @@ export class RegisterComponent {
   register(): void {
     if (!this.registerForm.valid) {
       this.submitted = true;
+      this.toastr.error('There was an error registering your account.');
       return;
     }
       if (this.accountService.register({
@@ -51,7 +53,7 @@ export class RegisterComponent {
       })) {
         this.router.navigate(['/home']);
       } else {
-        alert("An account with this email already exists.");
+        this.toastr.error('An account with this email already exists.')
         return;
       }
     }

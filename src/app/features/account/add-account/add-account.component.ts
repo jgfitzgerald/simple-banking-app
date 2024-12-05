@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Account, User } from '../../_models/models';
-import { generateAccountId } from '../../_helpers/utils';
+import { Account, User } from '../../../shared/models/models';
+import { generateAccountId } from '../../../core/utils/generate-ids';
 
 @Component({
   selector: 'app-add-account',

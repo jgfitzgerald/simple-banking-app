@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { LayoutComponent } from './shared/layout/layout.component';
-import { ManageComponent } from './account/manage/manage.component';
-import { authGuard } from './_services/auth.guard';
+import { LoginComponent } from './features/auth/login/login.component';
+import { RegisterComponent } from './features/auth/register/register.component';
+import { LayoutComponent } from './shared/components/layout/layout.component';
+import { ManageComponent } from './features/account/manage/manage.component';
+import { authGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/register', pathMatch: 'full' },

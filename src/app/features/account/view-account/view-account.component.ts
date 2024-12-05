@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '../../_models/models';
+import { User } from '../../../shared/models/models';
 
 @Component({
   selector: 'app-view-account',

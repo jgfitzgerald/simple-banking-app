@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Transaction, User } from '../../_models/models';
-import { generateTransactionId } from '../../_helpers/utils';
+import { Transaction, User } from '../../../shared/models/models';
+import { generateTransactionId } from '../../../core/utils/generate-ids';
 
 @Component({
   selector: 'app-transfer',

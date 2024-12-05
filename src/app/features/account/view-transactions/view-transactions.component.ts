@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { User } from '../../_models/models';
+import { User } from '../../../shared/models/models';
 
 @Component({
   selector: 'app-view-transactions',

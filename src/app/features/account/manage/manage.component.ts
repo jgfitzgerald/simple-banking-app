@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from '../../_models/models';
-import { AccountService } from '../../_services/account.service';
+import { User } from '../../../shared/models/models';
+import { AccountService } from '../../../core/services/account.service';
 
 @Component({
   selector: 'app-manage',

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccountService } from '../../_services/account.service';
-import { generateAccountId, generateUserId } from '../../_helpers/utils';
+import { AccountService } from '../../../core/services/account.service';
+import { generateAccountId, generateUserId } from '../../../core/utils/generate-ids';
 
 @Component({
   selector: 'app-register',
